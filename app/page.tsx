@@ -23,6 +23,9 @@ export default function Home() {
               <p className="text-xl md:text-2xl font-light text-gray-300 max-w-2xl">
                 Deviens acteur d'un festival de musique local au coeur des Hautes-Alpes
               </p>
+              <p className="text-xl md:text-2xl font-light text-gray-100 max-w-2xl">
+                Du Vendredi 29 Mai 2026 au Dimanche 31 Mai 2026
+              </p>
             </div>
 
             <div className="prose prose-invert prose-lg text-gray-400 leading-relaxed">
