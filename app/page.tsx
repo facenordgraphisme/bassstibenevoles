@@ -21,7 +21,7 @@ export default function Home() {
                 BASS<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">STIVAL</span>
               </h1>
               <p className="text-xl md:text-2xl font-light text-gray-300 max-w-2xl">
-                Deviens acteur du plus gros événement de Trance de babos de l'année.
+                Deviens acteur d'un festival de musique local au coeur des Hautes-Alpes
               </p>
             </div>
 

@@ -64,5 +64,37 @@ export const volunteer = defineType({
             type: 'string',
             hidden: ({ document }) => !document?.hasExperience,
         }),
+        defineField({
+            name: 'previousRole',
+            title: 'Quel poste occupais-tu ?',
+            type: 'string',
+            hidden: ({ document }) => !document?.hasExperience,
+        }),
+        defineField({
+            name: 'slots',
+            title: 'Nombre de créneaux souhaités (2h par créneau)',
+            type: 'string',
+            options: {
+                list: [
+                    { title: '2 Créneaux', value: '2' },
+                    { title: '3 Créneaux', value: '3' },
+                    { title: '4 Créneaux', value: '4' },
+                ],
+                layout: 'radio',
+            },
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'availabilityStart',
+            title: 'Disponibilité - Début',
+            type: 'datetime',
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'availabilityEnd',
+            title: 'Disponibilité - Fin',
+            type: 'datetime',
+            validation: (rule) => rule.required().min(rule.valueOfField('availabilityStart')),
+        }),
     ],
 })

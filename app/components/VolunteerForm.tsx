@@ -11,7 +11,11 @@ export default function VolunteerForm() {
         phone: '',
         roles: [] as string[],
         hasExperience: false,
-        previousFestival: ''
+        previousFestival: '',
+        previousRole: '',
+        slots: '2', // Default to 2 slots
+        availabilityStart: '',
+        availabilityEnd: ''
     });
 
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -78,7 +82,11 @@ export default function VolunteerForm() {
                 phone: '',
                 roles: [],
                 hasExperience: false,
-                previousFestival: ''
+                previousFestival: '',
+                previousRole: '',
+                slots: '2',
+                availabilityStart: '',
+                availabilityEnd: ''
             });
         } catch (error: any) {
             setStatus('error');
@@ -209,6 +217,61 @@ export default function VolunteerForm() {
                 </div>
             </div>
 
+            <div className="space-y-4">
+                <label className="block text-sm font-medium text-gray-300">Nombre de créneaux souhaités (2h par créneau)</label>
+                <div className="grid grid-cols-3 gap-4">
+                    {['2', '3', '4'].map((num) => (
+                        <div
+                            key={num}
+                            onClick={() => setFormData(prev => ({ ...prev, slots: num }))}
+                            className={`cursor-pointer border rounded-xl p-4 transition-all duration-200 flex flex-col items-center justify-center text-center select-none
+                                ${formData.slots === num
+                                    ? 'bg-fuchsia-500/20 border-fuchsia-500 text-white shadow-[0_0_15px_rgba(217,70,239,0.3)]'
+                                    : 'bg-black/40 border-gray-700 text-gray-400 hover:border-gray-500 hover:bg-white/5'
+                                }
+                            `}
+                        >
+                            <span className="text-xl font-bold">{num}</span>
+                            <span className="text-xs text-gray-400">Créneaux</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="space-y-4">
+                <label className="block text-sm font-medium text-gray-300">
+                    Disponibilités (Entre le vendredi 29 mai 12h et le dimanche 31 mai 18h)
+                </label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                        <label className="block text-xs text-gray-400">Début</label>
+                        <input
+                            type="datetime-local"
+                            name="availabilityStart"
+                            value={formData.availabilityStart}
+                            onChange={handleChange}
+                            min="2026-05-29T12:00"
+                            max="2026-05-31T18:00"
+                            required
+                            className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-600 text-gray-300"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="block text-xs text-gray-400">Fin</label>
+                        <input
+                            type="datetime-local"
+                            name="availabilityEnd"
+                            value={formData.availabilityEnd}
+                            onChange={handleChange}
+                            min="2026-05-29T12:00"
+                            max="2026-05-31T18:00"
+                            required
+                            className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-600 text-gray-300"
+                        />
+                    </div>
+                </div>
+            </div>
+
             <div className="space-y-4 pt-2">
                 <label className="flex items-center space-x-3 cursor-pointer group">
                     <input
@@ -222,16 +285,29 @@ export default function VolunteerForm() {
                 </label>
 
                 {formData.hasExperience && (
-                    <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-                        <label className="block text-sm font-medium text-gray-300 mb-2">Lequel ?</label>
-                        <input
-                            type="text"
-                            name="previousFestival"
-                            value={formData.previousFestival}
-                            onChange={handleChange}
-                            className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-600"
-                            placeholder="Nom du festival"
-                        />
+                    <div className="animate-in fade-in slide-in-from-top-2 duration-300 space-y-4 pl-4 border-l-2 border-gray-700">
+                        <div className="space-y-2">
+                            <label className="block text-sm font-medium text-gray-300">Lequel ?</label>
+                            <input
+                                type="text"
+                                name="previousFestival"
+                                value={formData.previousFestival}
+                                onChange={handleChange}
+                                className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-600"
+                                placeholder="Nom du festival"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="block text-sm font-medium text-gray-300">Quel poste occupais-tu ?</label>
+                            <input
+                                type="text"
+                                name="previousRole"
+                                value={formData.previousRole}
+                                onChange={handleChange}
+                                className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-600"
+                                placeholder="Ex: Barman, Sécurité, Montage..."
+                            />
+                        </div>
                     </div>
                 )}
             </div>
