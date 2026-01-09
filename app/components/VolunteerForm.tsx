@@ -15,7 +15,8 @@ export default function VolunteerForm() {
         previousRole: '',
         slots: '2', // Default to 2 slots
         availabilityStart: '',
-        availabilityEnd: ''
+        availabilityEnd: '',
+        comment: ''
     });
 
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -86,7 +87,8 @@ export default function VolunteerForm() {
                 previousRole: '',
                 slots: '2',
                 availabilityStart: '',
-                availabilityEnd: ''
+                availabilityEnd: '',
+                comment: ''
             });
         } catch (error: any) {
             setStatus('error');
@@ -218,7 +220,7 @@ export default function VolunteerForm() {
             </div>
 
             <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-300">Nombre de créneaux souhaités (2h par créneau)</label>
+                <label className="block text-sm font-medium text-gray-300">Nombre de créneaux souhaités</label>
                 <div className="grid grid-cols-3 gap-4">
                     {['2', '3', '4'].map((num) => (
                         <div
@@ -272,6 +274,18 @@ export default function VolunteerForm() {
                 </div>
             </div>
 
+            <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-300">Commentaire optionnel</label>
+                <textarea
+                    name="comment"
+                    value={formData.comment}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-600 resize-none"
+                    placeholder="Un message pour l'équipe ? Une précision sur tes dispos ?"
+                />
+            </div>
+
             <div className="space-y-4 pt-2">
                 <label className="flex items-center space-x-3 cursor-pointer group">
                     <input
@@ -312,11 +326,13 @@ export default function VolunteerForm() {
                 )}
             </div>
 
-            {status === 'error' && (
-                <div className="p-4 bg-red-900/50 border border-red-500 rounded-lg text-red-200 text-sm">
-                    {errorMessage}
-                </div>
-            )}
+            {
+                status === 'error' && (
+                    <div className="p-4 bg-red-900/50 border border-red-500 rounded-lg text-red-200 text-sm">
+                        {errorMessage}
+                    </div>
+                )
+            }
 
             <button
                 type="submit"
@@ -325,6 +341,6 @@ export default function VolunteerForm() {
             >
                 {status === 'submitting' ? 'Envoi en cours...' : 'Je postule ! 🚀'}
             </button>
-        </form>
+        </form >
     );
 }

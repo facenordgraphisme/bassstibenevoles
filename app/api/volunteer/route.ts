@@ -7,7 +7,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { name, firstName, email, phone, address, roles, hasExperience, previousFestival, previousRole, slots, availabilityStart, availabilityEnd } = body;
+        const { name, firstName, email, phone, address, roles, hasExperience, previousFestival, previousRole, slots, availabilityStart, availabilityEnd, comment } = body;
 
         // Basic validation
         if (!name || !firstName || !email || !phone || !address || !roles || roles.length === 0 || !slots || !availabilityStart || !availabilityEnd) {
@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
             slots,
             availabilityStart,
             availabilityEnd,
+            comment,
         });
 
         // Send Email Notification
@@ -61,6 +62,12 @@ export async function POST(req: NextRequest) {
                        Du : ${new Date(availabilityStart).toLocaleString('fr-FR')}<br/>
                        Au : ${new Date(availabilityEnd).toLocaleString('fr-FR')}
                     </p>
+                    ${comment ? `
+                    <hr />
+                    <p><strong>Commentaire :</strong><br/>
+                    ${comment.replace(/\n/g, '<br/>')}
+                    </p>
+                    ` : ''}
                     <hr />
                     ${hasExperience ? `
                         <p><strong>Expérience :</strong> OUI</p>

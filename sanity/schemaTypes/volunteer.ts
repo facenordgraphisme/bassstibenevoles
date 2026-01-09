@@ -96,5 +96,10 @@ export const volunteer = defineType({
             type: 'datetime',
             validation: (rule) => rule.required().min(rule.valueOfField('availabilityStart')),
         }),
+        defineField({
+            name: 'comment',
+            title: 'Commentaire / Message libre',
+            type: 'text',
+        }),
     ],
 })

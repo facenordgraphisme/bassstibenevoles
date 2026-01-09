@@ -23,7 +23,7 @@ export default function Home() {
               <p className="text-xl md:text-2xl font-light text-gray-300 max-w-2xl">
                 Deviens acteur d'un festival de musique local au coeur des Hautes-Alpes
               </p>
-              <p className="text-xl md:text-2xl font-light text-gray-100 max-w-2xl">
+              <p className="text-xl md:text-2xl font-semibold text-center text-gray-100 max-w-2xl">
                 Du Vendredi 29 Mai 2026 au Dimanche 31 Mai 2026
               </p>
             </div>
@@ -50,11 +50,15 @@ export default function Home() {
                     <span className="text-primary mt-1">✓</span>
                     <span>Accès au festival en dehors de tes créneaux.</span>
                   </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1">✓</span>
+                    <span>2 Boissons et un repas offert par jour de bénévolat</span>
+                  </li>
                 </ul>
               </div>
 
               <p>
-                Choisis ton poste de prédilection, rencontre des gens incroyables et vis le festival de l'intérieur. Que tu sois au bar pour hydrater les foules ou à la Basss Patrol pour veiller sur les gens, on a besoin de toi.
+                Choisis ton poste de prédilection, rencontre des gens incroyables et vis le festival de l'intérieur. Que tu sois au bar pour hydrater les foules ou à la Basss Patrouille pour veiller sur les gens, on a besoin de toi.
               </p>
             </div>
           </div>
