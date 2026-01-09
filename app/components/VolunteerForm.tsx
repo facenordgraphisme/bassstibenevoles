@@ -189,7 +189,7 @@ export default function VolunteerForm() {
                     {[
                         { id: 'bar', label: '🍺 Bar' },
                         { id: 'billetterie', label: '🎟️ Billetterie' },
-                        { id: 'basss_patrol', label: '🛡️ Basss Patrol' },
+                        { id: 'basss_patrol', label: '🛡️ Basss Patrouille' },
                         { id: 'parking', label: '🚗 Parking' },
                     ].map((option) => (
                         <div
