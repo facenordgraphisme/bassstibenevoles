@@ -63,6 +63,12 @@ export default function VolunteerForm() {
         setStatus('submitting');
         setErrorMessage('');
 
+        if (!formData.availabilityStart || !formData.availabilityEnd) {
+            setStatus('error');
+            setErrorMessage('Merci de renseigner vos dates de disponibilité (Début et Fin).');
+            return;
+        }
+
         try {
             const res = await fetch('/api/volunteer', {
                 method: 'POST',
@@ -280,7 +286,6 @@ export default function VolunteerForm() {
                             onChange={handleChange}
                             min="2026-05-29T12:00"
                             max="2026-05-31T18:00"
-                            required
                             className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-600 text-gray-300"
                         />
                     </div>
@@ -293,7 +298,6 @@ export default function VolunteerForm() {
                             onChange={handleChange}
                             min="2026-05-29T12:00"
                             max="2026-05-31T18:00"
-                            required
                             className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-600 text-gray-300"
                         />
                     </div>
