@@ -120,7 +120,7 @@ export default function VolunteerForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-md shadow-2xl">
+        <form onSubmit={handleSubmit} noValidate className="space-y-6 bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-md shadow-2xl">
             <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary mb-6">
                 Formulaire d'inscription
             </h2>
