@@ -7,10 +7,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { name, firstName, email, phone, address, roles, hasExperience, previousFestival, previousRole, slots, availabilityStart, availabilityEnd, comment } = body;
+        const { name, firstName, birthDate, email, phone, address, roles, hasExperience, previousFestival, previousRole, slots, availabilityStart, availabilityEnd, comment } = body;
 
         // Basic validation
-        if (!name || !firstName || !email || !phone || !address || !roles || roles.length === 0 || !slots || !availabilityStart || !availabilityEnd) {
+        if (!name || !firstName || !birthDate || !email || !phone || !address || !roles || roles.length === 0 || !slots || !availabilityStart || !availabilityEnd) {
             return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
         }
 
@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
             _type: 'volunteer',
             name,
             firstName,
+            birthDate,
             email,
             phone,
             address,
@@ -52,6 +53,7 @@ export async function POST(req: NextRequest) {
                     <h1>Nouvelle inscription Bénévoles ! 🎉</h1>
                     <p><strong>Nom :</strong> ${name}</p>
                     <p><strong>Prénom :</strong> ${firstName}</p>
+                    <p><strong>Date de naissance :</strong> ${new Date(birthDate).toLocaleDateString('fr-FR')}</p>
                     <p><strong>Email :</strong> ${email}</p>
                     <p><strong>Téléphone :</strong> ${phone}</p>
                     <p><strong>Adresse :</strong> ${address}</p>

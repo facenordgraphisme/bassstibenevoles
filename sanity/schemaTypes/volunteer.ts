@@ -17,6 +17,13 @@ export const volunteer = defineType({
             type: 'string',
             validation: (rule) => rule.required(),
         }),
+
+        defineField({
+            name: 'birthDate',
+            title: 'Date de naissance',
+            type: 'date',
+            validation: (rule) => rule.required(),
+        }),
         defineField({
             name: 'email',
             title: 'Adresse E-mail',

@@ -16,7 +16,8 @@ export default function VolunteerForm() {
         slots: '2', // Default to 2 slots
         availabilityStart: '',
         availabilityEnd: '',
-        comment: ''
+        comment: '',
+        birthDate: ''
     });
 
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -88,7 +89,8 @@ export default function VolunteerForm() {
                 slots: '2',
                 availabilityStart: '',
                 availabilityEnd: '',
-                comment: ''
+                comment: '',
+                birthDate: ''
             });
         } catch (error: any) {
             setStatus('error');
@@ -144,6 +146,20 @@ export default function VolunteerForm() {
                 </div>
             </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-300">Date de naissance</label>
+                    <input
+                        type="date"
+                        name="birthDate"
+                        value={formData.birthDate}
+                        onChange={handleChange}
+                        required
+                        className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-gray-600 text-gray-300"
+                    />
+                </div>
+            </div>
+
             <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-300">Email</label>
                 <input
@@ -191,20 +207,30 @@ export default function VolunteerForm() {
                         { id: 'billetterie', label: '🎟️ Billetterie' },
                         { id: 'basss_patrol', label: '🛡️ Basss Patrouille' },
                         { id: 'parking', label: '🚗 Parking' },
-                    ].map((option) => (
-                        <div
-                            key={option.id}
-                            onClick={() => handleRoleChange(option.id)}
-                            className={`cursor-pointer border rounded-xl p-4 transition-all duration-200 flex items-center justify-center text-center font-medium select-none
-                                ${formData.roles.includes(option.id)
-                                    ? 'bg-primary/20 border-primary text-white shadow-[0_0_15px_rgba(217,70,239,0.3)]'
-                                    : 'bg-black/40 border-gray-700 text-gray-400 hover:border-gray-500 hover:bg-white/5'
-                                }
-                            `}
-                        >
-                            {option.label}
-                        </div>
-                    ))}
+                    ].map((option) => {
+                        const isBar = option.id === 'bar';
+                        return (
+                            <div
+                                key={option.id}
+                                onClick={() => !isBar && handleRoleChange(option.id)}
+                                className={`cursor-pointer border rounded-xl p-4 transition-all duration-200 flex items-center justify-center text-center font-medium select-none relative overflow-hidden
+                                    ${isBar
+                                        ? 'bg-gray-900/40 border-gray-800 text-gray-600 cursor-not-allowed opacity-60'
+                                        : formData.roles.includes(option.id)
+                                            ? 'bg-primary/20 border-primary text-white shadow-[0_0_15px_rgba(217,70,239,0.3)]'
+                                            : 'bg-black/40 border-gray-700 text-gray-400 hover:border-gray-500 hover:bg-white/5'
+                                    }
+                                `}
+                            >
+                                {option.label}
+                                {isBar && (
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-[1px]">
+                                        <span className="text-red-500 font-bold transform -rotate-12 border-2 border-red-500 px-2 py-1 rounded text-sm uppercase">Complet</span>
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                     <div
                         onClick={() => handleRoleChange('any')}
                         className={`col-span-2 cursor-pointer border rounded-xl p-4 transition-all duration-200 flex items-center justify-center text-center font-medium select-none
