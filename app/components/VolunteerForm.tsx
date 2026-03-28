@@ -276,7 +276,7 @@ export default function VolunteerForm() {
                 <label className="block text-sm font-medium text-gray-300">
                     Disponibilités (Entre le vendredi 29 mai 12h et le dimanche 31 mai 18h)
                 </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                     <div className="space-y-2">
                         <label className="block text-xs text-gray-400">Début</label>
                         <input

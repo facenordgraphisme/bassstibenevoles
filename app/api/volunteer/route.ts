@@ -38,8 +38,8 @@ export async function POST(req: NextRequest) {
             previousFestival: hasExperience ? previousFestival : undefined,
             previousRole: hasExperience ? previousRole : undefined,
             slots,
-            availabilityStart,
-            availabilityEnd,
+            availabilityStart: new Date(availabilityStart).toISOString(),
+            availabilityEnd: new Date(availabilityEnd).toISOString(),
             comment,
         });
 
