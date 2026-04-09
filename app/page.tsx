@@ -1,4 +1,4 @@
-import VolunteerForm from './components/VolunteerForm';
+
 
 export default function Home() {
   return (
@@ -63,9 +63,32 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Column: Form */}
+          {/* Right Column: Form / Closed Message */}
           <div className="lg:col-span-5 sticky top-8">
-            <VolunteerForm />
+            <div className="p-8 md:p-10 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative z-10 space-y-6">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 text-xl font-bold border border-white/20">
+                  🎉
+                </div>
+                
+                <h2 className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                  L'équipe est au complet !
+                </h2>
+                
+                <p className="text-lg text-gray-300 leading-relaxed font-light">
+                  Un immense merci à toutes celles et ceux qui ont postulé. Les inscriptions bénévoles sont maintenant <strong className="text-white font-semibold">fermées</strong> pour cette édition.
+                </p>
+
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent my-6" />
+
+                <p className="text-sm text-gray-400 font-light">
+                  <span className="block mb-2 text-primary">👉 Pour les inscrits :</span>
+                  Vous allez recevoir très prochainement toutes les informations par email concernant les plannings et l'organisation du festival. Préparez-vous !
+                </p>
+              </div>
+            </div>
           </div>
 
         </div>
